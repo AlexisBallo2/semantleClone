@@ -6,7 +6,7 @@ import styles from "../styles/Home.module.scss";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import Swal from 'sweetalert2'
-import { get } from "http";
+import SymChart from "../components/SymChart"
 
 
 function Home() {
@@ -17,9 +17,11 @@ function Home() {
   const [symList, setSymList] = useState([])
   const [maxSym, setMaxSym] = useState(0)
   const [bestWord, setBestWord] = useState("")
+  
+  
 
   useEffect(() => {
-    console.log("calling")
+    // console.log("calling")
     getTarget()
   }, [])
   
@@ -31,7 +33,7 @@ function Home() {
       },
     });
     const data = await response.json()
-    console.log("target word", data)
+    // console.log("target word", data)
     setTargetWord(data.body)
     return data;
   }
@@ -65,13 +67,13 @@ function Home() {
       setGuessList(newGuessList)
 
       let newSymList = symList 
-      newSymList.unshift(String(data).slice(0,5))
-      console.log("sym",  String(data).slice(0,5))
+      newSymList.unshift(parseFloat(String(data).slice(0,5)))
+      // console.log("sym",  String(data).slice(0,5))
       setSymList(newSymList)
 
       setGuessList(oldArray => [...oldArray]);
       setSymList(oldArray => [...oldArray]);
-      console.log("guessList:", guessList, "symList", symList)
+      // console.log("guessList:", guessList, "symList", symList)
 
 
       if (data == "1") {
@@ -83,7 +85,7 @@ function Home() {
         reset()
       }
     } else {
-      console.log("doesnt exist")
+      // console.log("doesnt exist")
     }
     return data;
 
@@ -113,6 +115,9 @@ function Home() {
 
   return (
     <div className={styles.main}>
+      <div className = {styles.chartHolder}>
+        <SymChart sym = {symList} />
+      </div>
       <div className={styles.headerHolder}>
         <h1>Semantle</h1>
       </div>
