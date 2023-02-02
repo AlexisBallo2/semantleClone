@@ -9,7 +9,7 @@ import { promises as fs } from 'fs';
 const handler = async (req, res) => {
   try {
 
-    const fileContents = await fs.readFile("/Users/desktop/school/dl/fp/semantle/src/lib/backend/wordList.txt", 'utf8');
+    const fileContents = await fs.readFile("/Users/desktop/school/dl/fp/semantle/src/lib/backend/wordList1.txt", 'utf8');
     const list = fileContents.split(",")
     // console.log("testing:", list)
 
