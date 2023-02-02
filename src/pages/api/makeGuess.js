@@ -27,14 +27,14 @@ const handler = async (req, res) => {
     const wordList = await fs.readFile("/Users/desktop/school/dl/fp/semantle/src/lib/backend/wordList.txt", 'utf8');
     const list = wordList.split(",")
     console.log("target: ", target, "targetID", list.indexOf(target) )
-    console.log("guess: ", target, "guessID", list.indexOf(guess) )
+    console.log("guess: ", guess, "guessID", list.indexOf(guess) )
     let maxSym = 0
     if(list.indexOf(guess) == -1){
       maxSym= -1 
     } else if (guess == target) {
       maxSym = 1
     } else {
-      let maxSym
+      // maxSym = 100
       if(matrix[list.indexOf(target)][list.indexOf(guess)] == 0) {
         maxSym = matrix[list.indexOf(guess)][list.indexOf(target)] 
       } else {
