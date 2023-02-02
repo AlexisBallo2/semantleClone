@@ -139,7 +139,7 @@ function Home() {
         </div>
         {guessList.map((indivGuess, i) => {
           return (
-            <div className={styles.guessBox}>
+            <div className={styles.guessBox} key = {i} >
               <div className={styles.gHolder}>{indivGuess}</div> <div className={styles.gHolder}>{symList[i]}</div>
             </div>
           )

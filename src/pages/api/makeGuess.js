@@ -34,7 +34,12 @@ const handler = async (req, res) => {
     } else if (guess == target) {
       maxSym = 1
     } else {
-      maxSym = matrix[list.indexOf(target)][list.indexOf(guess)]
+      let maxSym
+      if(matrix[list.indexOf(target)][list.indexOf(guess)] == 0) {
+        maxSym = matrix[list.indexOf(guess)][list.indexOf(target)] 
+      } else {
+        maxSym = matrix[list.indexOf(target)][list.indexOf(guess)]
+      }
     }
 //     // #https://stackoverflow.com/questions/51362252/javascript-cosine-similarity-function
 //   function cosinesim(A,B){
