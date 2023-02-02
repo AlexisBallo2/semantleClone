@@ -9,7 +9,7 @@ const handler = async (req, res) => {
     let guess = req.body.guess.guess
     let target = req.body.target.targetWord
     console.log("got:", guess,target)
-    const fileContents = await fs.readFile("/Users/desktop/school/dl/fp/semantle/src/lib/backend/symMatrix1.txt", 'utf8');
+    const fileContents = await fs.readFile("../../lib/backend/symMatrix1.txt", 'utf8');
     let matrixList = fileContents.split("], [")
     let matrix = []
     for(let i = 0; i<matrixList.length; i++){
@@ -24,7 +24,7 @@ const handler = async (req, res) => {
     console.log("matrix", matrix.length, "by" , matrix[0].length)
 
     
-    const wordList = await fs.readFile("/Users/desktop/school/dl/fp/semantle/src/lib/backend/wordList1.txt", 'utf8');
+    const wordList = await fs.readFile("../../lib/backend/wordList1.txt", 'utf8');
     const list = wordList.split(",")
     console.log("target: ", target, "targetID", list.indexOf(target) )
     console.log("guess: ", guess, "guessID", list.indexOf(guess) )

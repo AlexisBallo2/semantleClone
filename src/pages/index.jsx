@@ -33,7 +33,7 @@ function Home() {
       },
     });
     const data = await response.json()
-    // console.log("target word", data)
+    console.log("target word", data)
     setTargetWord(data.body)
     return data;
   }
@@ -67,7 +67,7 @@ function Home() {
       setGuessList(newGuessList)
 
       let newSymList = symList 
-      newSymList.unshift(parseFloat(String(data).slice(0,5)))
+      newSymList.unshift(parseFloat(String(data).slice(0,7)))
       // console.log("sym",  String(data).slice(0,5))
       setSymList(newSymList)
 
