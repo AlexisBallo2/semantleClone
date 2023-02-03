@@ -11,7 +11,7 @@ import path from "path"
 const handler = async (req, res) => {
   try {
 
-    const fileContents = await fs.readFile( path.join(process.cwd(),"./data/wordList1.txt"), 'utf8');
+    const fileContents = await fs.readFile( path.join(process.cwd(),"./public/data/wordList1.txt"), 'utf8');
     const list = fileContents.split(",")
     // console.log("testing:", list)
     res.status(200).end(JSON.stringify(list));
