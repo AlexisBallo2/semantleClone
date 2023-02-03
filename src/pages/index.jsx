@@ -17,12 +17,14 @@ function Home() {
   const [symList, setSymList] = useState([])
   const [maxSym, setMaxSym] = useState(0)
   const [bestWord, setBestWord] = useState("")
+  const [wordList, setWordList] = useState([])
   
   
 
   useEffect(() => {
     // console.log("calling")
     getTarget()
+    getList()
   }, [])
   
   const getTarget = async () => {
@@ -35,6 +37,19 @@ function Home() {
     const data = await response.json()
     console.log("target word", data)
     setTargetWord(data.body)
+    return data;
+  }
+
+  const getList = async () => {
+    const response = await fetch("/api/getWordList", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const data = await response.json()
+    console.log("wordList", data.slice(0,data.length-1).join(", "))
+    setWordList(data.slice(4,data.length-1).join(", "))
     return data;
   }
 
@@ -102,6 +117,14 @@ function Home() {
     guessEntered()
   }
 
+  const showWordList = () => {
+    Swal.fire({
+      title: 'Word List',
+      text: wordList,
+      confirmButtonText: 'Cool'
+    })
+  }
+
   function giveup() {
     Swal.fire({
       title: 'Game Over!',
@@ -132,6 +155,8 @@ function Home() {
       <br/>
       <div>
         <Button variant="outlined" onClick = {giveup}>Give up</Button>
+        <span> </span>
+        <Button variant="outlined" onClick = {showWordList}>Show Word List</Button>
       </div>
       <div>
         <div className={styles.titleHolder}>
